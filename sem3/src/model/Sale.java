@@ -10,7 +10,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 
 /**
- * Represents a point of sale between a customer and a cashier.
+ * this will be a point of sale between customer and cashier
  */
 public class Sale {
     private Total total;
@@ -19,16 +19,14 @@ public class Sale {
 
 
     /**
-     * Creates a new instance, represented as a Sale.
+     * a new instance is created and will represent a sale
      */
     public Sale(){
         this.total = new Total();
     }
 
     /**
-     * Gets the value of total.
-     *
-     * @return The value of total.
+     * the method will get the value of total and return the value.
      */
     public Total getTotal() {
         return total;
@@ -36,19 +34,15 @@ public class Sale {
 
     /**
      * Gets the HashMap items.
-     *
-     * @return The HashMap items.
+     * HashMap: stores data in (key, value) pairs.
      */
     public HashMap<String, Item> getItems(){
         return items;
     }
 
     /**
-     * Updates the current sale. Updates how many items and the running total.
-     * Can't take null items.
-     *
-     * @param item The item that will be added to the sale.
-     * @return  The itemDescription as a string.
+     * null items wont be taken.
+     * the current sale will get updated, also how many items there are and the running total.
      */
     public String updateSale(Item item){
         if (itemListContains(item)) {
@@ -75,11 +69,6 @@ public class Sale {
         total.updateTotal(item);
     }
 
-    /**
-     * Makes the instance into to a <code>String</code>
-     *
-     * @return The instance as a <code>String</code>
-     */
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();

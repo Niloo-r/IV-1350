@@ -10,10 +10,7 @@ import util.Amount;
 
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Erik
- */
+
 public class InventorySystemTest {
     private ByteArrayOutputStream outContent;
     private PrintStream originalSysOut;
@@ -34,11 +31,6 @@ public class InventorySystemTest {
         System.setOut(originalSysOut);
     }
 
-    /**
-     * Test of findItem method, of class InventorySystem. It checks if the item description (String)
-     * of the inventory[0] matches the item description of found item. The findItem method checks the
-     * if the itemIdentifiers match, if it does it returns an item.
-     */
     @Test
     public void testFindItem() {
         ItemDTO inventory[] = new ItemDTO[2];
@@ -50,9 +42,6 @@ public class InventorySystemTest {
         assertEquals(inventory[0].getItemDescription(), foundItemDescription);
     }
 
-    /**
-     * Test for the method findItem, in the class InventorySystem.
-     */
     @Test
     public void testFindItemNotExisting() {
         InventorySystem inventorySystem = new InventorySystem();
@@ -60,9 +49,7 @@ public class InventorySystemTest {
         assertEquals(null, inventorySystem.findItem(itemIdentifier));
     }
 
-    /**
-     * Test of saveSaleInformation method, of class InventorySystem.
-     */
+
     @Test
     public void testSaveSaleInformation() {
         System.out.println("saveSaleInformation");

@@ -12,10 +12,6 @@ package dbHandler;
         import org.junit.Test;
         import static org.junit.Assert.*;
 
-/**
- *
- * @author Erik
- */
 public class AccountingSystemTest {
     private ByteArrayOutputStream outContent;
     private PrintStream originalSysOut;
@@ -36,12 +32,7 @@ public class AccountingSystemTest {
         System.setOut(originalSysOut);
     }
 
-    
 
-
-    /**
-     * Test of saveSaleInformation method, of class AccountingSystem.
-     */
     @Test
     public void testSavesSaleInformation() {
 

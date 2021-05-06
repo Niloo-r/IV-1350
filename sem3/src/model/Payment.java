@@ -3,17 +3,15 @@ package model;
 import util.Amount;
 
 /**
- *  Represents a payment of a specific sale.
+ *  payment of a specific sale is represented
  */
 public class Payment {
     private Amount paidAmount;
     private Total total;
 
     /**
-     * Creates a new instance, represented as a payment.
-     *
-     * @param paidAmount The amount money the customer have given.
-     * @param total The total that will that will be payed for by the customer.
+     * paidAmount represents the amount of money that the customer have given.
+     * total is simply the total amount.
      */
     public Payment(Amount paidAmount, Total total){
         this.paidAmount = paidAmount;
@@ -21,18 +19,14 @@ public class Payment {
     }
 
     /**
-     * Get the total cost of the payment.
-     *
-     * @return The total cost.
+     * gets the total and return the value.
      */
     Total getTotal() {
         return total;
     }
 
     /**
-     *  Calculates the amount of change and returns it as an {@link Amount}
-     *
-     * @return The total change as {@link Amount}
+     * the amount of change will be calculated and returned
      */
     public Amount getChange(){
         return paidAmount.minus(total.getTotalAndTax());

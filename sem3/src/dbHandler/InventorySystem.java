@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * A dummy representing a class that makes calls to a "external inventory system"
+ * represents an external inventory system
  */
 
 public class InventorySystem {

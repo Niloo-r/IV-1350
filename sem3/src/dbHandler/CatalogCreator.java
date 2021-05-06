@@ -3,14 +3,14 @@ package dbHandler;
 import model.DiscountRules;
 
 /**
- * Represents a creator that consists of different catalogs.
+ * here are different catalogs created
  */
 public class CatalogCreator {
     private DiscountRules discountRules;
     private ItemCatalog itemCatalog;
 
     /**
-     * Creates a new instance
+     * a new instance
      */
     public CatalogCreator(){
         discountRules = new DiscountRules();
@@ -18,17 +18,14 @@ public class CatalogCreator {
     }
 
     /**
-     * Gets the value of discountCatalog.
-     *
-     * @return The value discountCatalog.
+     * the method getDiscounCatalog will simply get the value of discountCatalog and return the value.
      */
     public DiscountRules getDiscountCatalog() {
         return discountRules;
     }
 
     /**
-     * Gets the value of itemCatalog.
-     * @return  The value of itemCatalog.
+     *the function getItemCatalog will get the value of itemCatalog and return the value.
      */
     public ItemCatalog getItemCatalog() {
         return itemCatalog;

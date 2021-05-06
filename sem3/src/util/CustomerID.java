@@ -3,33 +3,29 @@ package util;
 import java.util.Objects;
 
 /**
- * Represents an identification of a customer.
+ * a customers identification .
  */
 public class CustomerID {
     private String customerIdentificationNumber;
 
     /**
-     * Creates an new instance, representing the specified customer identification.
-     *
-     * @param customerIdentificationNumber The identification number represented by the newly created instance.
+     * an instance is created  ans represents identification of a customer
      */
     public CustomerID(String customerIdentificationNumber){
         this.customerIdentificationNumber = customerIdentificationNumber;
     }
 
     /**
-     * Get the value of customerIdentificationNumber.
-     *
-     * @return The value of costumerIdentificationNumber.
+     * Get the value of customerIdentificationNumber and return it
      */
     public String getCustomerIdentificationNumber() {
         return customerIdentificationNumber;
     }
 
     /**
-     * Checks if this instance is equal to another instance.
-     * @param obj The other instance.
-     * @return <code>true</code> if all attributes are the same, the same class and if it is not null. <code>false</code> otherwise.
+     * compares this instance to another instance
+     * returns true if attributes are the same
+     * otherwise false
      */
     @Override
     public boolean equals(Object obj) {

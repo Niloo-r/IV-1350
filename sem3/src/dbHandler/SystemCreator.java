@@ -1,15 +1,14 @@
 package dbHandler;
 
 /**
- * A object that initiates the systems needed for the application,
- * accounting system and inventory system.
+ * Systems are created. Accounting and inventory systems are necessary.
  */
 public class SystemCreator {
     private AccountingSystem accountingSystem;
     private InventorySystem inventorySystem;
 
     /**
-     * Creates the system creator.
+     * the systemCreator is created
      */
     public SystemCreator(){
         accountingSystem = new AccountingSystem();
@@ -17,18 +16,14 @@ public class SystemCreator {
     }
 
     /**
-     * Gets the value of accountingSystem.
-     *
-     * @return The value of accountingSystem.
+     * gets the value of the accounting system and return the value.
      */
     public AccountingSystem getAccountingSystem() {
         return accountingSystem;
     }
 
     /**
-     * Gets the value of inventorySystem.
-     *
-     * @return The value of inventorySystem.
+     * Gets the value of inventorySystem and return the value.
      */
     public InventorySystem getInventorySystem() {
         return inventorySystem;

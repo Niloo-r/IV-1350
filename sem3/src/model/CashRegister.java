@@ -3,31 +3,27 @@ package model;
 import util.Amount;
 
 /**
- * Represents a dummy cash register.
+ * Represents a cash register
  */
 public class CashRegister {
     private Amount balance;
 
     /**
-     * Creates a new instance of a cashregister with a balance of zero.
+     * Cash register is created with the balance 0.
      */
     public CashRegister(){
         this.balance = new Amount(0);
     }
 
     /**
-     * Gets the value of balance.
-     *
-     * @return The value of balance.
+     * gets the value of balance and return the value.
      */
     public Amount getBalance() {
         return balance;
     }
 
     /**
-     * Updates the balance wth the specified payment.
-     *
-     * @param payment The amount of money that will be added to the balance of the cash register.
+     * the balance will get updated with the specified payment.
      */
     public void addPayment(Payment payment){
         balance = balance.plus(payment.getTotal().getTotalAndTax());

@@ -7,15 +7,12 @@ import dbHandler.SystemCreator;
 import view.View;
 
 /**
- * Contains the <code>main</code> method.
- * Performs all startup of the application.
+ * the startup of the process and application
  */
 public class Main {
 
     /**
-     * Starts the application.
-     *
-     * @param args The application does not take any command line parameters.
+     * the application is started.
      */
     public static void main(String[] args) {
         SystemCreator systemCreator = new SystemCreator();

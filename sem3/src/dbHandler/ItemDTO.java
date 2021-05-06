@@ -3,7 +3,7 @@ package dbHandler;
 import util.Amount;
 
 /**
- * Represents the data of an item.
+ * here we have data of an item.
  */
 public class ItemDTO {
     private final Amount price;
@@ -13,10 +13,7 @@ public class ItemDTO {
     private String itemDescription;
 
     /**
-     * Creates a new instance representing a particular item.
-     *  @param price     The price of the item.
-     * @param itemIdentifier
-     * @param taxAmount The tax amount of the item.
+     * an item is represented and different detail such as price,tax and quantity is available.
      */
     public ItemDTO(Amount price, int itemIdentifier, Amount taxAmount, int quantity) {
         this.price = price;
@@ -29,9 +26,7 @@ public class ItemDTO {
 
 
     /**
-     * Get value of price.
-     *
-     * @return the value of price.
+     * the mothod getPrice will get the price of the item and return the value.
      */
     public Amount getPrice() {
 
@@ -39,18 +34,14 @@ public class ItemDTO {
     }
 
     /**
-     * Get the value of itemName.
-     *
-     * @return the value of itemName.
+     * the method getItemIdentifier will get the name of the item and return the value.
      */
     public int getItemIdentifier() {
         return this.itemIdentifier;
     }
 
     /**
-     * Get the value of taxAmount.
-     *
-     * @return the value of taxAmount.
+     * the method getTaxAmount will get the value of the tax and return the value.
      */
     public Amount getTaxAmount() {
 

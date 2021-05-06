@@ -3,24 +3,18 @@ package view;
 import controller.Controller;
 import util.Amount;
 
-/**
- * This application does not have an "actual" view.
- * This class is a placeholder for a view that can make a sample execution
- */
 public class View {
     private Controller controller;
 
     /**
-     *  Creates a new instance, represented as a view.
-     * @param controller The class where all calls are being made.
+     *  a new instance is created and is represented as a view.
      */
     public View(Controller controller){
         this.controller = controller;
     }
 
     /**
-     *  Makes a sample execution of the application.
-     *  AKA, simulating someone making inputs to the application.
+     *  simulates the case where someone makes inputs
      */
     public void sampleExecution(){
         System.out.println("Cashier starts new sale.\n");

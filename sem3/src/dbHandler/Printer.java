@@ -8,15 +8,12 @@ import model.Receipt;
 public class Printer {
 
     /**
-     * Creates an instance, represented as a printer.
+     * an instance is created representing a printer
      */
     public Printer(){ }
 
     /**
-     * Prints the specified receipt, this is a dummy printer and not a real one.
-     * It prints to <code>System.out</code>, instead of a printer.
-     *
-     * @param receipt The specified receipt that will be printed.
+     * the printer will print out the receipt.
      */
     public void printReceipt(Receipt receipt){
         System.out.println(receipt.toString());

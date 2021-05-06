@@ -7,7 +7,7 @@ import util.Amount;
 import dbHandler.*;
 
 /**
- *  Represents the total amount with tax.
+ * total amount with tax is represented
  */
 public class Total {
     private Amount total;
@@ -16,7 +16,7 @@ public class Total {
 
 
     /**
-     *  Creates a new instance, representing the total.
+     * a new instance is created and represents the total.
      */
     public Total(){
         this.total = new Amount(0);
@@ -24,36 +24,30 @@ public class Total {
     }
 
     /**
-     * Gets the value of total.
-     *
-     * @return The value of total.
+     * Gets the value of total and return it
      */
     public Amount getTotal() {
         return total;
     }
 
     /**
-     * Gets the value the totalTax.
-     *
-     * @return The totalTax.
+     * Gets the value the totalTax and return it.
      */
     public Amount getTotalTax() {
         return totalTax;
     }
 
     /**
-     *  Adds the tax to the total and returns it as a new {@link Amount}
-     *
-     * @return The total with taxes.
+     *  Adds the tax to the total
+     * total amount with tax will be returned
      */
     public Amount getTotalAndTax(){
         return total.plus(totalTax);
     }
 
     /**
-     *  Updates the total and the totalTax. By adding the items price to the total, and the items tax to the total tax.
-     *
-     * @param item The item that will be added to the total, have information about how many items there are and the price and tax.
+     * item price will be added to the total. items tax will be added to the total tax
+     * the total and the totalTax will be updated
      */
     public void updateTotal(Item item){
         if(item == null){

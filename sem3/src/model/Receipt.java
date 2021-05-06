@@ -10,9 +10,7 @@ public class Receipt {
     private Payment payment;
 
     /**
-     * Creates a new instance, representing a receipt.
-     *
-     * @param sale The information that will be on the receipt.
+     * a new instance is created and represents a receipt.
      */
     public Receipt(Sale sale, Payment payment){
         this.sale = sale;
@@ -20,9 +18,7 @@ public class Receipt {
     }
 
     /**
-     * Makes the instance into a <code>String</code>
-     *
-     * @return Tbe instance as a <code>String</code>
+     * makes a String
      */
     @Override
     public String toString() {

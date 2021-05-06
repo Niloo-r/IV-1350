@@ -11,11 +11,11 @@ public class Item {
     private Amount quantity;
 
     /**
-     * Creates a new instance, represented as an item.
+     * a new instance is created and represents an item.
      *
-     * @param itemDescription The description of an item.
-     * @param itemIdentifier The identifier of an item.
-     * @param quantity The amount if items.
+     * @param itemDescription represents the description of the item.
+     * @param itemIdentifier is the identifier of the item.
+     * @param quantity represents how many of each item we have.
      */
     public Item(ItemDTO itemDescription, String itemIdentifier, Amount quantity) {
         this.itemDescription = itemDescription;
@@ -24,52 +24,37 @@ public class Item {
     }
 
     /**
-     * Will increase the quantity of items with the specified {@link Amount}
-     *
-     * @param otherQuantity The {@link Amount} that will be added to the quantity.
+     * if there is more than one of an item then the quantity will increase.
+     *it will be added to the quantity.
      */
     public void increaseQuantity(Amount otherQuantity){
         this.quantity = this.quantity.plus(otherQuantity);
     }
 
     /**
-     * Will decrease the quantity of items with the specified {@link Amount}
-     *
-     * @param otherQuantity The {@link Amount} that will be subtracted to the quantity.
+     * in case we want to decrease the quantity
+     * it will we subtracted from quantity
      */
     public void decreaseQuantity(Amount otherQuantity){
         this.quantity = this.quantity.minus(otherQuantity);
     }
 
     /**
-     * Get the value of quantity.
-     *
-     * @return The value of quantity.
+     * gets the quantity value, in other word, how many of an item we have
      */
     public Amount getQuantity() {
         return quantity;
     }
 
     /**
-     * Get the value of itemDescription.
-     *
-     * @return The value of itemDescription
-     */
-
-
-    /**
-     * Get the value of itemIdentifier.
-     *
-     * @return The value of itemIdentifier.
+     * gets the value of the itemIdentifier and return the value.
      */
     public String getItemIdentifier() {
         return itemIdentifier;
     }
 
     /**
-     * Turns instance into a <code>String</code>
-     *
-     * @return The instance as a <code>String</code>
+     * makes a String
      */
     @Override
     public String toString() {
@@ -80,11 +65,8 @@ public class Item {
     }
 
     /**
-     * Two <code>Item</code> instances are equal if all fields are equal except the quantity.
-     *
-     * @param obj The <code>Item</code> to compare with this <code>Item</code>.
-     * @return <code>true</code> if all fields in the specified <code>Item</code> are equal to
-     *         corresponding fields in this <code>Item</code> except quantity, <code>false</code> if they are not.
+     * compare all instances but quantity
+     * return true if they are equal and false if they are not.
      */
     @Override
     public boolean equals(Object obj) {

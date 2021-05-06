@@ -5,35 +5,28 @@ import util.Amount;
 import java.util.HashMap;
 
 /**
- * Represents a dummy item database.
+ * represnets an ItemCatalog
  */
 public class ItemCatalog {
     private HashMap<String, ItemDTO> itemList = new HashMap<>();
 
-    /**
-     *  Creates a instance of a dummy item database.
-     */
+
     ItemCatalog(){
         addItems();
     }
 
     /**
-     *  Checks if the searched itemIdentifier exists in the database.
-     *
-     * @param itemIdentifier The looked item.
-     * @return If item exists <code>true</code> else <code>false</code>
+     * will check if the item exists in data base or the catalog
+     * return true if it exists and false if it doesnt
      */
     public boolean itemExists(String itemIdentifier){
         return itemList.containsKey(itemIdentifier);
     }
 
     /**
-     * Gets the item description of the specified itemIdentifier.
-     * Returns an item with the specified quantity.
-     *
-     * @param itemIdentifier The identifier of an item.
-     * @param quantity The amount of items.
-     * @return An item with it's itemDescription and quantity or null if the identifier didn't exist..
+     * the method getItem will get the description of an item using itemIdentifier and quantity of the item
+     * and returns the value
+     * if the item does not found null will be returned.
      */
     public Item getItem(String itemIdentifier, Amount quantity){
         if (itemExists(itemIdentifier)){

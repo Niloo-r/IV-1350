@@ -18,9 +18,9 @@ public class Controller {
     private Printer printer;
 
     /**
-    * @param systemCreator uses to get all classes that has to do with all the external system calls.
-    * @param catalogCreator uses to get all the classes that has to do with database calls
-    * @param printer is the interface to printer
+    * systemCreator gets all classes that has to do with all the external system calls.
+    * catalogCreator  gets all the classes that has to do with database calls
+    * printer is the interface to printer
      */
 
     public Controller(SystemCreator systemCreator, CatalogCreator catalogCreator, Printer printer){
@@ -34,7 +34,7 @@ public class Controller {
     }
 
     /**
-     * starting a new sale
+     * a new sale is started
      */
     public void startNewSale (){
         this.sale = new Sale();
