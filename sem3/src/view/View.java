@@ -1,36 +1,67 @@
 package view;
 
+import controller.CouldNotAddItemException;
 import controller.Controller;
-import util.Amount;
+import dbHandler.ItemNotFoundException;
+
+import java.io.IOException;
+import java.lang.Math;
+import model.ItemDTO;
+import model.Receipt;
+import model.Sale;
 
 public class View {
     private Controller controller;
 
-    /**
-     *  a new instance is created and is represented as a view.
-     */
-    public View(Controller controller){
+    public View(Controller controller) {
         this.controller = controller;
     }
 
-    /**
-     *  simulates the case where someone makes inputs
-     */
-    public void sampleExecution(){
-        System.out.println("Cashier starts new sale.\n");
+    public void addItem(int itemId, int quantity) throws
+            ItemNotFoundException, CouldNotAddItemException, IOException{
+        try {
+            ItemDTO currentItem = controller.addItem(itemId, quantity);
+            printItemOnScreen(currentItem, quantity);
+
+        } catch (ItemNotFoundException exc) {
+            System.out.println(exc.getMessage());
+        }
+        catch (CouldNotAddItemException exc) {
+            System.out.println(exc.getMessage());
+        }
+    }
+
+    public void runSale() {
         controller.startNewSale();
-        System.out.println("Cashier enter items. \n");
-        String out = controller.scanItem("tandkräm", new Amount(1));
-        System.out.println(out);
-        out = controller.scanItem("tandborste", new Amount(4));
-        System.out.println(out);
-        out = controller.scanItem("Tomat", new Amount(5));
-        System.out.println(out);
-        System.out.println("Cashier displays the total with taxes. \n");
-        out = controller.displayTotalAndTax();
-        System.out.println(out);
-        System.out.println("Cashier enters the paid amount. \n");
-        out = controller.pay(new Amount(2000));
-        System.out.println(out);
+        System.out.println("New sale was started.");
+    }
+
+    public void pay(double amount) {
+        double amountPaid = amount;
+        double change = controller.pay(amount);
+        printChange(amountPaid, change);
+    }
+
+    public void signalDiscountRequest(int customerId) {
+        double newTotalPrice = controller.signalDiscountRequest();
+        printDiscountedPrice(newTotalPrice);
+    }
+
+    private void printItemOnScreen(ItemDTO IDTO, int quantity) {
+        double runningTotal = controller.indicateAllItemsRegistered();
+        System.out.println("Item: " + IDTO.getItemDescription() + " x" + quantity + " Price: " + IDTO.getPrice() * quantity + " Running Total: " + runningTotal);
+    }
+
+    private void printDiscountedPrice(double price) {
+        System.out.println("Discounted price: " + price);
+    }
+
+    private void printChange(double amountPaid, double change) {
+        System.out.println("Amount paid : " + amountPaid + " Change: " + Math.round(change * 100.0) / 100.0);
+    }
+
+    public Receipt requestReceipt() {
+        Receipt receipt = controller.requestReceipt();
+        return receipt;
     }
 }

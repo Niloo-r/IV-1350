@@ -1,104 +1,121 @@
 package model;
 
-import dbHandler.*;
+import dbHandler.ItemDTO;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.CopyOnWriteArrayList;
-
-
-/**
- * this will be a point of sale between customer and cashier
- */
 public class Sale {
-    private Total total;
-    private HashMap<String, Item> items = new HashMap<>();
-    private ItemDTO itemDTO ;
+    private int vAT;
+    private ArrayList<ItemDTO> itemList = new ArrayList<ItemDTO>();
+    private ArrayList<Integer> itemQuantity = new ArrayList<Integer>();
+    private double runningTotal = 0.0;
+    private int itemsExisting = 0;
+    private double change;
+    private double payment;
+    CashRegister cashRegister;
+    boolean itemFlag = false;
+    boolean discountFlag = false;
+    private List<SaleObserver> saleObservers = new ArrayList<>();
 
+    public void addItem(ItemDTO item, int quantity) {
+        if(itemList.isEmpty()) {
+            itemList.add(item);
+            itemQuantity.add(quantity);
+            itemFlag = true;
+        }
+        for(int i = 0; i < itemList.size(); i++) {
+            if(itemAlreadyScanned(item, i)) {
+                int quantTemp = itemQuantity.get(i);
+                itemQuantity.set(i,quantTemp + quantity);
+                itemFlag = true;
+            }
+        }
+        if(!itemFlag){
+            itemList.add(item);
+            itemQuantity.add(quantity);
+        }
 
-    /**
-     * a new instance is created and will represent a sale
-     */
-    public Sale(){
-        this.total = new Total();
+        itemFlag = false;
+        calculateRunningTotal(item, quantity);
     }
 
-    /**
-     * the method will get the value of total and return the value.
-     */
-    public Total getTotal() {
-        return total;
+    public void turnOnCashRegister() {
+        cashRegister = new CashRegister();
     }
 
-    /**
-     * Gets the HashMap items.
-     * HashMap: stores data in (key, value) pairs.
-     */
-    public HashMap<String, Item> getItems(){
-        return items;
+    public double pay(double payment, double newTotalPrice) {
+        change = cashRegister.calculateChange(payment, newTotalPrice);
+        this.payment = payment;
+        cashRegister.addPayment(payment - change);
+        notifyObservers(calcDiscountedPrice());
+        return change;
     }
 
-    /**
-     * null items wont be taken.
-     * the current sale will get updated, also how many items there are and the running total.
-     */
-    public String updateSale(Item item){
-        if (itemListContains(item)) {
-            updateItemQuantityAndTotal(item);
+    private boolean itemAlreadyScanned(ItemDTO item, int i) {
+        if (item.getItemIdentifier() == itemList.get(i).getItemIdentifier() && itemFlag == false){
+            return true;
+        }
+        else
+            return false;
+    }
+
+    private void calculateRunningTotal(ItemDTO foundItem, int itemQuantity) {
+        this.runningTotal += foundItem.getPrice() * itemQuantity;
+    }
+
+    public double getRunningTotal() {
+        if(!discountFlag) {
+            return this.runningTotal;
         } else {
-            addItemAndUpdateTotal(item);
+            return runningTotal * 0.8;
         }
-        return item.getItemIdentifier();
     }
 
-    private boolean itemListContains(Item item){
-        return items.containsKey(item.getItemIdentifier());
+    public ArrayList<ItemDTO> getItemList() {
+        return itemList;
     }
 
-    private void updateItemQuantityAndTotal(Item item){
-        Item oldItem = items.get(item.getItemIdentifier());
-        oldItem.increaseQuantity(item.getQuantity());
-        items.put(oldItem.getItemIdentifier(), oldItem);
-        total.updateTotal(item);
+    public int getExistingItems() {
+        return itemsExisting + 1;
     }
 
-    private void addItemAndUpdateTotal(Item item){
-        items.put(item.getItemIdentifier(), item);
-        total.updateTotal(item);
+    public double getChange() {
+        return Math.round(change * 100.0) / 100.0;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        Iterator entriesIterator = getEntries();
+    public double getAmountPaid() {
+        return payment;
+    }
 
-        while(entriesIterator.hasNext()) {
-            Item item = getCurrentItem(entriesIterator);
-            builder.append(item.getItemIdentifier());
-            addNewLine(builder, " quantity: " + item.getQuantity().toString());
+    public ArrayList<Integer> getItemQuantityList() {
+        return this.itemQuantity;
+    }
+
+    public double calcDiscountedPrice() {
+        discountFlag = true;
+        return this.runningTotal * 0.8;
+    }
+
+    /**
+     * Adds an observer to the list saleObservers
+     * @param saleObs The observer to be added to the list.
+     */
+    public void addSaleObserver(SaleObserver saleObs) {
+        saleObservers.add(saleObs);
+    }
+
+    /**
+     * All the specified observers will be notified when a sale has been paid for.
+     * @param observers The observers to notify.
+     */
+    public void addSaleObservers(List<SaleObserver> observers) {
+        saleObservers.addAll(observers);
+    }
+
+    private void notifyObservers(double paidAmount) {
+        for(SaleObserver obs: saleObservers) {
+            obs.newPayment(paidAmount);
         }
-
-        addNewLine(builder, "Total: " + total.getTotal().toString());
-        addNewLine(builder, "Tax: " + total.getTotalTax());
-        return builder.toString();
     }
-
-    private Iterator getEntries(){
-        Set entries = items.entrySet();
-        return entries.iterator();
-    }
-
-    private Item getCurrentItem(Iterator entriesIterator){
-        Map.Entry mapping = (Map.Entry) entriesIterator.next();
-        return (Item) mapping.getValue();
-    }
-
-    private void addNewLine(StringBuilder builder, String line){
-        builder.append(line);
-        builder.append("\n");
-    }
-
-
 }
+
