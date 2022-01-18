@@ -2,6 +2,7 @@ package dbHandler;
 
 import model.ItemDTO;
 import model.Sale;
+import view.FileLogger;
 
 public class InventorySystem {
     ItemDTO inventory[] = new ItemDTO[3];
@@ -16,7 +17,9 @@ public class InventorySystem {
     public ItemDTO findItem(int itemIdentifier) throws ItemNotFoundException, DatabaseErrorException {
         for(int i = 0; i < inventory.length; i++) {
             if (itemIdentifier == 4){
+
                 throw new DatabaseErrorException();
+                //print error to log
             }
             if(inventory[i].getItemIdentifier() == itemIdentifier) {
                 return inventory[i];

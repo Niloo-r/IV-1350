@@ -1,2 +1,20 @@
-New total income is: 545.0
+20220118_154445
+Item with ID: 3 not found.
+20220118_154445
+Could not add the item.(Database error)
+20220118_154445
+New total income is: 565.0
+
+20220118_154445
+New total income is: 610.0
+
+20220118_154457
+Item with ID: 3 not found.
+20220118_154457
+Could not add the item.(Database error)
+20220118_154457
+New total income is: 565.0
+
+20220118_154458
+New total income is: 610.0
 

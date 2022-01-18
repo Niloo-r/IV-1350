@@ -29,7 +29,6 @@ public class TotalRevenueFileOutput implements SaleObserver {
         totalRevenue = totalRevenue + cashAmount;
 
         logger.log("New total income is: " + String.valueOf(totalRevenue) + "\n");
-
     }
 
     /* public void totalRevenue(double cashAmount) {

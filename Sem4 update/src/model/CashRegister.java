@@ -13,7 +13,7 @@ public class CashRegister {
     }
 
     public void addPayment(double payment) {
-        balance += payment;
+        this.balance += payment;
     }
 
     public double calculateChange(double payment, double cost) {

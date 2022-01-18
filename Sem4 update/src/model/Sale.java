@@ -14,6 +14,10 @@ public class Sale {
     boolean discountFlag = false;
     private List<SaleObserver> saleObservers = new ArrayList<>();
 
+    public Sale(CashRegister cashRegister){
+        this.cashRegister = cashRegister;
+    }
+
     public void addItem(ItemDTO item, int quantity) {
         if(itemList.isEmpty()) {
             itemList.add(item);
@@ -35,15 +39,12 @@ public class Sale {
         calculateRunningTotal(item, quantity);
     }
 
-    public void cashRegisterON() {
-        cashRegister = new CashRegister();
-    }
-
     public double pay(double payment, double newTotalPrice) {
+        //runningTotal = calcDiscountedPrice();
         change = cashRegister.calculateChange(payment, newTotalPrice);
         this.payment = payment;
         cashRegister.addPayment(payment - change);
-        notifyObservers(calcDiscountedPrice());
+        notifyObservers();
         return change;
     }
 
@@ -108,9 +109,9 @@ public class Sale {
         saleObservers.addAll(observers);
     }
 
-    private void notifyObservers(double paidAmount) {
+    private void notifyObservers() {
         for(SaleObserver obs: saleObservers) {
-            obs.newPayment(paidAmount);
+            obs.newPayment(this.cashRegister.getBalance());
         }
     }
 }

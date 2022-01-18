@@ -11,6 +11,7 @@ import model.Receipt;
 
 public class View {
     private Controller controller;
+    private FileLogger fileLogger;
 
 
 
@@ -18,21 +19,27 @@ public class View {
         this.controller = controller;
         controller.addSaleObserver(new TotalRevenueView());
         TotalRevenueFileOutput fileOutput = new TotalRevenueFileOutput();
-        fileOutput.setLogger(new FileLogger());
+        this.fileLogger = new FileLogger();
+        fileOutput.setLogger(this.fileLogger);
         controller.addSaleObserver(fileOutput);
+
     }
 
-    public void addItem(int itemId, int quantity) throws
-            ItemNotFoundException, CouldNotAddItemException, IOException{
+    public void addItem(int itemId, int quantity){
         try {
             ItemDTO currentItem = controller.addItem(itemId, quantity);
             printItemOnScreen(currentItem, quantity);
 
         } catch (ItemNotFoundException exc) {
-            System.out.println(exc.getMessage());
+            fileLogger.log(exc.getMessage());
         }
         catch (CouldNotAddItemException exc) {
-            System.out.println(exc.getMessage());
+            fileLogger.log(exc.getMessage());
+        }
+
+        //allt annat exceptions 
+        catch(Exception exc){
+            fileLogger.log(exc.getMessage());
         }
     }
 

@@ -34,8 +34,7 @@ public class Controller {
 
     public void startNewSale() {
         inventorySystem.reset();
-        sale = new Sale();
-        sale.cashRegisterON();
+        sale = new Sale(this.cashRegister);
         sale.addSaleObserver(TRV);
         TotalRevenueFileOutput fileOutput = new TotalRevenueFileOutput();
         fileOutput.setLogger(new FileLogger());
